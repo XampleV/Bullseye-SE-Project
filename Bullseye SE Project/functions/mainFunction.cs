@@ -27,7 +27,8 @@ namespace Bullseye_Project.functions
         public static void HowCloseThread()
         {
             //Here we'll loop constantly, I'll grab the position of the mouse and calculate the pixels.
-            Console.WriteLine(Cursor.Position.X);
+            Console.WriteLine(Cursor.Position.ToString());
+            Thread.Sleep(1000);
         }
     }
 }
