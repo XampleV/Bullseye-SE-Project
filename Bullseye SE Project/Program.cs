@@ -11,7 +11,20 @@ namespace Bullseye_Project
 
         static void Introduction()
         {
-            // we'll welcome the user here, and ask them are you ready to play or something
+            // Greet them.
+            Console.WriteLine("Welcome to Bullseye!");
+
+            // Ask them to enter a username.
+            Console.WriteLine("Please enter a username: ");
+
+            // Create a string variable and get user input from the keyboard and store it in the variable.
+            string userName = Console.ReadLine();
+
+            // Print the value of the variable (userName) which will display the input value.
+            Console.WriteLine("Hello, " + userName);
+
+            Console.WriteLine("Would you like to play? (Y/N)");
+
             // and we'll call functions.mainFunctions.MainFuncionEntry();
         }
     }
