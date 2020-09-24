@@ -6,8 +6,6 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            Bullseye_Project.functions.mainFunctions.MainFuncionEntry();
-            functions.mainFunctions.HowCloseThread();
             Introduction();
         }
 
