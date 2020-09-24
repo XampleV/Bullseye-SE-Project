@@ -28,6 +28,7 @@ namespace Bullseye_Project.functions
         {
             //Here we'll loop constantly, I'll grab the position of the mouse and calculate the pixels.
             Console.WriteLine(Cursor.Position.X);
+            //smitty
         }
     }
 }
