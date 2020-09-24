@@ -24,8 +24,17 @@ namespace Bullseye_Project
             Console.WriteLine("Hello, " + userName);
 
             Console.WriteLine("Would you like to play? (Y/N)");
+            Console.Write();
+            string Choice = Console.ReadLine();
 
-            // and we'll call functions.mainFunctions.MainFuncionEntry();
+            if (Choice == "YES")
+            {
+                functions.mainFunctions.MainFuncionEntry();
+            }
+            else if (Choice == "NO")
+            {
+                Console.WriteLine("Have a great day then!");
+            }
         }
     }
 }
