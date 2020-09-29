@@ -6,8 +6,8 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            functions.mainFunctions.MainFunctionEntry();
-            Introduction();
+            functions.mainFunctions.MainFuncionEntry();
+            //Introduction();
         }
 
         static void Introduction()

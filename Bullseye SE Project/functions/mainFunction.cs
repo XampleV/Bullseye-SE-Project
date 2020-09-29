@@ -21,102 +21,86 @@ namespace Bullseye_Project.functions
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFunctionEntry()
+        static public void MainFuncionEntry()
         {
             //Make the Goal the First Time
             GoalPoint();
 
             // ready the threads
-            Thread currentPositionLoop = new Thread(new ThreadStart(HowCloseThread));
             //Thread currentGoal = new Thread(new ThreadStart(GoalPoint));
             Thread howPlayerDoing = new Thread(new ThreadStart(CloseOrNot));
 
-      
-                // start all threads
-                currentPositionLoop.Start();
-                //currentGoal.Start();
-                howPlayerDoing.Start();
+
+            // start all threads
+            //currentGoal.Start();
+            howPlayerDoing.Start();
 
 
         }
 
-        public static void HowCloseThread()
-        {
-            //Here we'll loop constantly, I'll grab the position of the mouse and calculate the pixels.
-            while (true)
-            {
-                mouseXPos = Cursor.Position.X;
-                mouseYPos = Cursor.Position.Y;
-                //Console.WriteLine(Cursor.Position.Y);
-                Thread.Sleep(30);
-                //push
-            }
-        }
+
 
         //Find the goal point to hover at
         public static void GoalPoint()
         {
 
-                //Generate two seperate points set as the goal and then hand to the player
-                goalXPos = _random.Next(1080);
-                goalYPos = _random.Next(1920);
-                Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
-
+            //Generate two seperate points set as the goal and then hand to the player
+            goalXPos = _random.Next(1920);
+            goalYPos = _random.Next(1080);
+            Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
         }
 
         //how well the palyer did
         public static void CloseOrNot()
         {
-            while (true) {
-                scoreStuffX = goalXPos - mouseXPos;
-                scoreStuffY = goalYPos - mouseYPos;
+            while (true)
+            {
+                Thread.Sleep(100);
+                int heyX = Cursor.Position.X;
+                int heyY = Cursor.Position.Y;
+                scoreStuffX = goalXPos - heyX;
+                scoreStuffY = goalYPos - heyY;
 
-                if (scoreStuffX > 1000)
-                {
-                    Console.WriteLine("Your X is Too Cold.");
-                } else if (scoreStuffX > 600)
-                {
-                    Console.WriteLine("Your X is Warmer");
-                } else if (scoreStuffX > 100)
-                {
-                    Console.WriteLine("Your X is HOT!");
-                }else if (scoreStuffX > 60)
-                {
-                    Console.WriteLine("Your X is Super HOT!");
-                }else if (scoreStuffX > 20)
-                {
-                    Console.WriteLine("X win");
-                    /*
-                    Console.WriteLine("YOU GOT X");
-                    Console.Clear();
-                    GoalPoint();
-                    */
+                if (scoreStuffX < 0) {
+                    scoreStuffX = scoreStuffX * -1; 
+                }
+                if (scoreStuffY < 0) {
+                    scoreStuffY = scoreStuffY * -1; 
                 }
 
 
-                if (scoreStuffY > 1000)
+                if (scoreStuffX <= 30 && scoreStuffY <= 30)
                 {
-                    Console.WriteLine("Your Y is Too Cold.");
-                }else if (scoreStuffY > 600)
-                {
-                    Console.WriteLine("Your Y is Warmer");
-                }else if (scoreStuffY > 100)
-                {
-                    Console.WriteLine("Your Y is HOT!");
-                }else if (scoreStuffY > 60)
-                {
-                    Console.WriteLine("Your Y is Super HOT!");
-                }else if (scoreStuffY > 20)
-                {
-                    Console.WriteLine("Y win");
-                    /*
-                    Console.WriteLine("YOU GOT Y");
+                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.ReadLine();
                     Console.Clear();
                     GoalPoint();
-                    */
+                }
+                else if (scoreStuffX <= 100 && scoreStuffY <= 100)
+                {
+                    Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+
+                }
+                else if (scoreStuffX <= 600 && scoreStuffY <= 600)
+                {
+                    Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else if (scoreStuffX <= 1000 && scoreStuffY <= 1000)
+                {
+                    Console.WriteLine($"You're too cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else
+                {
+                    Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
 
-                Thread.Sleep(2000);
+
+
+
+
+
+
+
             }
         }
     }
