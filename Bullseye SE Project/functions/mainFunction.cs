@@ -94,7 +94,7 @@ namespace Bullseye_Project.functions
                     Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
 
-
+                // done
 
 
 
