@@ -8,56 +8,99 @@ namespace Bullseye_Project.functions
 {
     class mainFunctions
     {
-        public static int width = 1920;
-        public static int height = 1080;
+        public static int mouseXPos;
+        public static int mouseYPos;
+        public static int goalXPos;
+        public static int goalYPos;
+
+        public static int scoreStuffX;
+        public static int scoreStuffY;
 
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry(string userName, string mode)
+        static public void MainFuncionEntry()
         {
+            //Make the Goal the First Time
+            GoalPoint();
+
             // ready the threads
-            Thread currentPositionLoop = new Thread(new ThreadStart(HowCloseThread));
+            //Thread currentGoal = new Thread(new ThreadStart(GoalPoint));
+            Thread howPlayerDoing = new Thread(new ThreadStart(CloseOrNot));
 
 
             // start all threads
-            currentPositionLoop.Start();
+            //currentGoal.Start();
+            howPlayerDoing.Start();
+
 
         }
 
-        public static void HowCloseThread()
+
+
+        //Find the goal point to hover at
+        public static void GoalPoint()
         {
-            //Here we'll loop constantly, I'll grab the position of the mouse and calculate the pixels.
-            Console.WriteLine(Cursor.Position.X);
+
+            //Generate two seperate points set as the goal and then hand to the player
+            goalXPos = _random.Next(1920);
+            goalYPos = _random.Next(1080);
+            Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
+        }
+
+        //how well the palyer did
+        public static void CloseOrNot()
+        {
             while (true)
             {
-                //mouseXPos = Cursor.Position.X;
-                //mouseYPos = Cursor.Position.Y;
-                Console.WriteLine($"{Cursor.Position.X}, {Cursor.Position.Y}");
+                Thread.Sleep(100);
+                int heyX = Cursor.Position.X;
+                int heyY = Cursor.Position.Y;
+                scoreStuffX = goalXPos - heyX;
+                scoreStuffY = goalYPos - heyY;
 
-                Thread.Sleep(1);
-                //push
-            }
-        }
-        public static void SetTargetPoint()
-        {
-            List<int> indices = new List<int>();
-
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    double dx = x - m1;
-                    double dy = y - m2;
-                    double distanceSquared = dx * dx + dy * dy;
-
-                    if (distanceSquared <= radiusSquared)
-                    {
-                        indices.Add(x + y * width);
-                    }
+                if (scoreStuffX < 0) {
+                    scoreStuffX = scoreStuffX * -1; 
                 }
+                if (scoreStuffY < 0) {
+                    scoreStuffY = scoreStuffY * -1; 
+                }
+
+
+                if (scoreStuffX <= 30 && scoreStuffY <= 30)
+                {
+                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.ReadLine();
+                    Console.Clear();
+                    GoalPoint();
+                }
+                else if (scoreStuffX <= 100 && scoreStuffY <= 100)
+                {
+                    Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+
+                }
+                else if (scoreStuffX <= 600 && scoreStuffY <= 600)
+                {
+                    Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else if (scoreStuffX <= 1000 && scoreStuffY <= 1000)
+                {
+                    Console.WriteLine($"You're too cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else
+                {
+                    Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+
+                // done
+
+
+
+
+
+
             }
         }
     }
