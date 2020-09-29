@@ -13,6 +13,9 @@ namespace Bullseye_Project.functions
         public static int goalXPos;
         public static int goalYPos;
 
+        public static int scoreStuffX;
+        public static int scoreStuffY;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
@@ -20,15 +23,21 @@ namespace Bullseye_Project.functions
 
         static public void MainFuncionEntry()
         {
+            //Make the Goal the First Time
+            GoalPoint();
+
             // ready the threads
             Thread currentPositionLoop = new Thread(new ThreadStart(HowCloseThread));
-            Thread currentGoal = new Thread(new ThreadStart(GoalPoint));
+            //Thread currentGoal = new Thread(new ThreadStart(GoalPoint));
+            Thread howPlayerDoing = new Thread(new ThreadStart(CloseOrNot));
 
       
                 // start all threads
                 currentPositionLoop.Start();
-                currentGoal.Start();
-            
+                //currentGoal.Start();
+                howPlayerDoing.Start();
+
+
         }
 
         public static void HowCloseThread()
@@ -47,13 +56,37 @@ namespace Bullseye_Project.functions
         //Find the goal point to hover at
         public static void GoalPoint()
         {
-            while (true)
-            {
+
                 //Generate two seperate points set as the goal and then hand to the player
                 goalXPos = _random.Next(1080);
                 goalYPos = _random.Next(1920);
                 Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
-                Thread.Sleep(4000);
+        }
+
+        //how well the palyer did
+        public static void CloseOrNot()
+        {
+            while (true) {
+                scoreStuffX = goalXPos - mouseXPos;
+                scoreStuffY = goalYPos - mouseYPos;
+
+                if (scoreStuffX > 1000 || scoreStuffY > 1000)
+                {
+                    Console.WriteLine("You're Too Cold.");
+                } else if (scoreStuffX > 600 || scoreStuffY > 600)
+                {
+                    Console.WriteLine("Warmer");
+                } else if (scoreStuffX > 100 || scoreStuffY > 100)
+                {
+                    Console.WriteLine("HOT!");
+                }else if (scoreStuffX > 30 || scoreStuffY > 30)
+                {
+                    Console.WriteLine("YOU GOT IT");
+                    Console.Clear();
+                    GoalPoint();
+                }
+
+                Thread.Sleep(3500);
             }
         }
     }
