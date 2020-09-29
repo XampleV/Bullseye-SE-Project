@@ -12,7 +12,7 @@ namespace Bullseye_Project
         static void Introduction()
         {
             string userName;
-            string mode;
+            string Difficulty;
             // Greet them.
             Console.WriteLine("Welcome to Bullseye!");
 
@@ -31,21 +31,19 @@ namespace Bullseye_Project
 
             if (Choice == "YES")
             {
-                Console.WriteLine("What difficulty? Easy, Medium, or Hard?");
-                string Difficulty = Console.ReadLine();
-                if (Difficulty == ("Easy")
+                while (true)
+                {
+                    Console.WriteLine("What difficulty? Easy, Medium, or Hard?");
+                    Difficulty = Console.ReadLine().ToLower();
+                    if (Difficulty == "hard" || Difficulty == "medium" || Difficulty == "easy")
                     {
-
+                        break;
+                    }
+                    Console.WriteLine("Please enter either 'hard', 'medium', or 'easy'");
+                    
                 }
-                else if (Difficulty == ("Medium")
-                    {
-
-                }
-                else (Difficulty == ("Hard")
-                        {
-
-                }
-                functions.mainFunctions.MainFunctionEntry(userName, mode);
+                Console.ReadLine();
+                functions.mainFunctions.MainFunctionEntry(userName, Difficulty);
             }
             else if (Choice == "NO")
             {
