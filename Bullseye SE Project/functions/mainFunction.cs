@@ -61,11 +61,13 @@ namespace Bullseye_Project.functions
                 scoreStuffX = goalXPos - heyX;
                 scoreStuffY = goalYPos - heyY;
 
-                if (scoreStuffX < 0) {
-                    scoreStuffX = scoreStuffX * -1; 
+                if (scoreStuffX < 0)
+                {
+                    scoreStuffX = scoreStuffX * -1;
                 }
-                if (scoreStuffY < 0) {
-                    scoreStuffY = scoreStuffY * -1; 
+                if (scoreStuffY < 0)
+                {
+                    scoreStuffY = scoreStuffY * -1;
                 }
 
 
@@ -94,7 +96,7 @@ namespace Bullseye_Project.functions
                     Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
 
-                // done
+
 
 
 
