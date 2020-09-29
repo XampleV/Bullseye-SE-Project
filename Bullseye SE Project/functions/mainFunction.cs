@@ -43,7 +43,22 @@ namespace Bullseye_Project.functions
         }
         public static void SetTargetPoint()
         {
+            List<int> indices = new List<int>();
 
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    double dx = x - m1;
+                    double dy = y - m2;
+                    double distanceSquared = dx * dx + dy * dy;
+
+                    if (distanceSquared <= radiusSquared)
+                    {
+                        indices.Add(x + y * width);
+                    }
+                }
+            }
         }
     }
 }
