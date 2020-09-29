@@ -16,6 +16,8 @@ namespace Bullseye_Project.functions
         public static int scoreStuffX;
         public static int scoreStuffY;
 
+        public static string playAgain;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
@@ -58,8 +60,8 @@ namespace Bullseye_Project.functions
         {
 
                 //Generate two seperate points set as the goal and then hand to the player
-                goalXPos = _random.Next(1080);
-                goalYPos = _random.Next(1920);
+                goalXPos = _random.Next(1920);
+                goalYPos = _random.Next(1080);
                 Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
 
         }
@@ -71,52 +73,49 @@ namespace Bullseye_Project.functions
                 scoreStuffX = goalXPos - mouseXPos;
                 scoreStuffY = goalYPos - mouseYPos;
 
-                if (scoreStuffX > 1000)
+                if (scoreStuffX >= 1000 && scoreStuffY >=1000)
                 {
-                    Console.WriteLine("Your X is Too Cold.");
-                } else if (scoreStuffX > 600)
+                    Console.WriteLine("Too Cold.");
+                } else if (scoreStuffX >= 600 && scoreStuffY >= 600)
                 {
-                    Console.WriteLine("Your X is Warmer");
-                } else if (scoreStuffX > 100)
+                    Console.WriteLine("Warmer");
+                } else if (scoreStuffX >= 200 && scoreStuffY >= 200)
                 {
-                    Console.WriteLine("Your X is HOT!");
-                }else if (scoreStuffX > 60)
-                {
-                    Console.WriteLine("Your X is Super HOT!");
-                }else if (scoreStuffX > 20)
-                {
-                    Console.WriteLine("X win");
-                    /*
-                    Console.WriteLine("YOU GOT X");
-                    Console.Clear();
-                    GoalPoint();
-                    */
+                    Console.WriteLine("HOT!");
                 }
-
-
-                if (scoreStuffY > 1000)
+                else if (scoreStuffX >= 60 && scoreStuffY >= 60)
                 {
-                    Console.WriteLine("Your Y is Too Cold.");
-                }else if (scoreStuffY > 600)
+                    Console.WriteLine("Super HOT!");
+                }
+                else if (scoreStuffX >= 30 && scoreStuffY >= 30)
                 {
-                    Console.WriteLine("Your Y is Warmer");
-                }else if (scoreStuffY > 100)
-                {
-                    Console.WriteLine("Your Y is HOT!");
-                }else if (scoreStuffY > 60)
-                {
-                    Console.WriteLine("Your Y is Super HOT!");
-                }else if (scoreStuffY > 20)
-                {
-                    Console.WriteLine("Y win");
-                    /*
-                    Console.WriteLine("YOU GOT Y");
-                    Console.Clear();
-                    GoalPoint();
-                    */
+                    Console.WriteLine("Winner");
+                    PlayAgain();
                 }
 
                 Thread.Sleep(2000);
+            }
+        }
+
+        //Play again or not
+        public static void PlayAgain()
+        {
+            Thread currentPositionLoop = new Thread(new ThreadStart(HowCloseThread));
+            Thread howPlayerDoing = new Thread(new ThreadStart(CloseOrNot));
+
+            Console.WriteLine("If you want to play again please type yes. If not just type no.");
+            playAgain = Console.ReadLine().ToLower();
+
+            if (playAgain == "yes")
+            {
+                Console.WriteLine("Then lets go.");
+                MainFunctionEntry();
+            }
+            else
+            {
+                Console.WriteLine("Thats too bad. Guess I'll cya later.");
+                howPlayerDoing.Abort();
+                currentPositionLoop.Abort();
             }
         }
     }
