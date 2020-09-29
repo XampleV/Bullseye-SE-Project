@@ -21,7 +21,7 @@ namespace Bullseye_Project.functions
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry()
+        static public void MainFunctionEntry()
         {
             //Make the Goal the First Time
             GoalPoint();
@@ -61,6 +61,7 @@ namespace Bullseye_Project.functions
                 goalXPos = _random.Next(1080);
                 goalYPos = _random.Next(1920);
                 Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
+
         }
 
         //how well the palyer did
@@ -70,23 +71,52 @@ namespace Bullseye_Project.functions
                 scoreStuffX = goalXPos - mouseXPos;
                 scoreStuffY = goalYPos - mouseYPos;
 
-                if (scoreStuffX > 1000 || scoreStuffY > 1000)
+                if (scoreStuffX > 1000)
                 {
-                    Console.WriteLine("You're Too Cold.");
-                } else if (scoreStuffX > 600 || scoreStuffY > 600)
+                    Console.WriteLine("Your X is Too Cold.");
+                } else if (scoreStuffX > 600)
                 {
-                    Console.WriteLine("Warmer");
-                } else if (scoreStuffX > 100 || scoreStuffY > 100)
+                    Console.WriteLine("Your X is Warmer");
+                } else if (scoreStuffX > 100)
                 {
-                    Console.WriteLine("HOT!");
-                }else if (scoreStuffX > 30 || scoreStuffY > 30)
+                    Console.WriteLine("Your X is HOT!");
+                }else if (scoreStuffX > 60)
                 {
-                    Console.WriteLine("YOU GOT IT");
+                    Console.WriteLine("Your X is Super HOT!");
+                }else if (scoreStuffX > 20)
+                {
+                    Console.WriteLine("X win");
+                    /*
+                    Console.WriteLine("YOU GOT X");
                     Console.Clear();
                     GoalPoint();
+                    */
                 }
 
-                Thread.Sleep(3500);
+
+                if (scoreStuffY > 1000)
+                {
+                    Console.WriteLine("Your Y is Too Cold.");
+                }else if (scoreStuffY > 600)
+                {
+                    Console.WriteLine("Your Y is Warmer");
+                }else if (scoreStuffY > 100)
+                {
+                    Console.WriteLine("Your Y is HOT!");
+                }else if (scoreStuffY > 60)
+                {
+                    Console.WriteLine("Your Y is Super HOT!");
+                }else if (scoreStuffY > 20)
+                {
+                    Console.WriteLine("Y win");
+                    /*
+                    Console.WriteLine("YOU GOT Y");
+                    Console.Clear();
+                    GoalPoint();
+                    */
+                }
+
+                Thread.Sleep(2000);
             }
         }
     }

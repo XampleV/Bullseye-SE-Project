@@ -6,7 +6,7 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            functions.mainFunctions.MainFuncionEntry();
+            functions.mainFunctions.MainFunctionEntry();
             Introduction();
         }
 
