@@ -43,7 +43,7 @@ namespace Bullseye_Project
                     
                 }
                 Console.ReadLine();
-                functions.mainFunctions.MainFunctionEntry(userName, Difficulty);
+                functions.mainFunctions.MainFuncionEntry(userName, Difficulty);
             }
             else if (Choice == "NO")
             {
