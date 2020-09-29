@@ -10,6 +10,8 @@ namespace Bullseye_Project.functions
     {
         public static int mouseXPos;
         public static int mouseYPos;
+        public static int goalXPos;
+        public static int goalYPos;
 
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
@@ -20,10 +22,12 @@ namespace Bullseye_Project.functions
         {
             // ready the threads
             Thread currentPositionLoop = new Thread(new ThreadStart(HowCloseThread));
+            Thread currentGoal = new Thread(new ThreadStart(GoalPoint));
 
       
                 // start all threads
                 currentPositionLoop.Start();
+                currentGoal.Start();
             
         }
 
@@ -36,6 +40,19 @@ namespace Bullseye_Project.functions
                 mouseYPos = Cursor.Position.Y;
                 //Console.WriteLine(Cursor.Position.Y);
                 Thread.Sleep(30);
+            }
+        }
+
+        //Find the goal point to hover at
+        public static void GoalPoint()
+        {
+            while (true)
+            {
+                //Generate two seperate points set as the goal and then hand to the player
+                goalXPos = _random.Next(1080);
+                goalYPos = _random.Next(1920);
+                Console.WriteLine($"The goal is x{goalXPos} y{goalYPos}");
+                Thread.Sleep(4000);
             }
         }
     }
