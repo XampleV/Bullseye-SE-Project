@@ -6,7 +6,6 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            functions.mainFunctions.MainFuncionEntry();
             Introduction();
         }
 
@@ -14,6 +13,7 @@ namespace Bullseye_Project
         {
             string userName;
             string mode;
+            mode = "hard"; // temp
             // Greet them.
             Console.WriteLine("Welcome to Bullseye!");
 
