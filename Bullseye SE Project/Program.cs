@@ -31,7 +31,21 @@ namespace Bullseye_Project
 
             if (Choice == "YES")
             {
-                functions.mainFunctions.MainFuncionEntry(userName, mode);
+                Console.WriteLine("What difficulty? Easy, Medium, or Hard?");
+                string Difficulty = Console.ReadLine();
+                if (Difficulty == ("Easy")
+                    {
+
+                }
+                else if (Difficulty == ("Medium")
+                    {
+
+                }
+                else (Difficulty == ("Hard")
+                        {
+
+                }
+                functions.mainFunctions.MainFunctionEntry(userName, mode);
             }
             else if (Choice == "NO")
             {
