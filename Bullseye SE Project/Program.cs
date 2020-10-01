@@ -6,7 +6,8 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            Introduction();
+            Bullseye_SE_Project.functions.DataControl.InitializeCode();
+            //Introduction();
         }
 
         static void Introduction()
