@@ -30,21 +30,37 @@ namespace Bullseye_Project
 
             //Set the difficulty
             Console.WriteLine("Please enter how hard you want the game to be. Hard, Medium, or Easy");
-            int playerDifficulty = Console.ReadLine().ToLower();
+            string playerDifficulty = Console.ReadLine().ToLower();
 
             switch (playerDifficulty)
             {
                 case "hard":
                     Console.WriteLine("Oh, I hope you do well then.");
-                    mainFunction.mainFunctions.Difficuly() = 1.5;
+                    functions.mainFunctions.Difficulty = 0.5m;
                     break;
                 case "medium":
                     Console.WriteLine("Yeah thats where I would play at too.");
-                    mainFunction.mainFunctions.Difficuly() = 1;
+                    functions.mainFunctions.Difficulty = 1;
                     break;
                 case "easy":
                     Console.WriteLine("Feeling casual today huh?");
-                    mainFunction.mainFunctions.Difficuly() = 2;
+                    functions.mainFunctions.Difficulty = 2;
+                    break;
+            }
+
+            Console.WriteLine("Do you want to play now? Yes or No");
+            string playOrNot = Console.ReadLine().ToLower();
+
+            switch (playOrNot)
+            {
+                case "yes":
+                    functions.mainFunctions.MainFuncionEntry();
+                    break;
+                case "no":
+                    Console.WriteLine("Too bad.");
+                    break;
+                default:
+                    Console.WriteLine("That imput doesn't exist.");
                     break;
             }
 
