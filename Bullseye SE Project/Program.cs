@@ -11,6 +11,7 @@ namespace Bullseye_Project
 
         static void Introduction()
         {
+
             string userName;
             string mode;
             mode = "hard"; // temp
@@ -26,18 +27,27 @@ namespace Bullseye_Project
             // Print the value of the variable (userName) which will display the input value.
             Console.WriteLine("Hello, " + userName);
 
-            Console.WriteLine("Would you like to play? (Y/N)");
-            //Console.Write();
-            string Choice = Console.ReadLine();
 
-            if (Choice == "YES")
+            //Set the difficulty
+            Console.WriteLine("Please enter how hard you want the game to be. Hard, Medium, or Easy");
+            int playerDifficulty = Console.ReadLine().ToLower();
+
+            switch (playerDifficulty)
             {
-                functions.mainFunctions.MainFuncionEntry(userName, mode);
+                case "hard":
+                    Console.WriteLine("Oh, I hope you do well then.");
+                    mainFunction.mainFunctions.Difficuly() = 1.5;
+                    break;
+                case "medium":
+                    Console.WriteLine("Yeah thats where I would play at too.");
+                    mainFunction.mainFunctions.Difficuly() = 1;
+                    break;
+                case "easy":
+                    Console.WriteLine("Feeling casual today huh?");
+                    mainFunction.mainFunctions.Difficuly() = 2;
+                    break;
             }
-            else if (Choice == "NO")
-            {
-                Console.WriteLine("Have a great day then!");
-            }
+
         }
     }
 }

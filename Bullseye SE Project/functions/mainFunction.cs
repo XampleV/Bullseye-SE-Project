@@ -18,6 +18,8 @@ namespace Bullseye_Project.functions
 
         public static string playAgain;
 
+        public static decimal Difficulty;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
@@ -73,23 +75,27 @@ namespace Bullseye_Project.functions
                 }
 
 
-                if (scoreStuffX <= 30 && scoreStuffY <= 30)
+                if (scoreStuffX <= 30 * Difficulty && scoreStuffY <= 30 * Difficulty)
                 {
                     Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                     Console.ReadLine();
                     Console.Clear();
                     GoalPoint();
                 }
-                else if (scoreStuffX <= 100 && scoreStuffY <= 100)
+                else if (scoreStuffX <= 100 * Difficulty && scoreStuffY <= 100 * Difficulty)
                 {
                     Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
 
                 }
-                else if (scoreStuffX <= 600 && scoreStuffY <= 600)
+                else if (scoreStuffX <= 600 * Difficulty && scoreStuffY <= 600 * Difficulty)
                 {
                     Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
-                else if (scoreStuffX <= 1000 && scoreStuffY <= 1000)
+                else if (scoreStuffX <= 800 * Difficulty && scoreStuffY <= 800 * Difficulty)
+                {
+                    Console.WriteLine($"It's Getting Pretty Chilly.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else if (scoreStuffX <= 1000 * Difficulty && scoreStuffY <= 1000 * Difficulty)
                 {
                     Console.WriteLine($"You're too cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
