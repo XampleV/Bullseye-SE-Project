@@ -74,6 +74,7 @@ namespace Bullseye_Project.functions
                 if (scoreStuffX <= 30 && scoreStuffY <= 30)
                 {
                     Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=mnpjpdhUNjY");
                     Console.ReadLine();
                     Console.Clear();
                     GoalPoint();
