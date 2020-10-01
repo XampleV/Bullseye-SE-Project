@@ -8,8 +8,6 @@ namespace Bullseye_Project.functions
 {
     class mainFunctions
     {
-        public static int mouseXPos;
-        public static int mouseYPos;
         public static int goalXPos;
         public static int goalYPos;
 
@@ -21,7 +19,7 @@ namespace Bullseye_Project.functions
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry()
+        static public void MainFuncionEntry(string username, string mode)
         {
             //Make the Goal the First Time
             GoalPoint();
@@ -35,6 +33,7 @@ namespace Bullseye_Project.functions
             //currentGoal.Start();
             howPlayerDoing.Start();
 
+            
 
         }
 
