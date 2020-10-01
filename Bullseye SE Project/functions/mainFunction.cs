@@ -14,6 +14,8 @@ namespace Bullseye_Project.functions
         public static int scoreStuffX;
         public static int scoreStuffY;
 
+        public static string playAgain;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
