@@ -75,31 +75,35 @@ namespace Bullseye_Project.functions
                 }
 
 
-                if (scoreStuffX <= 30 * Difficulty && scoreStuffY <= 30 * Difficulty)
+                if (scoreStuffX <= 5 * Difficulty && scoreStuffY <= 5 * Difficulty)
                 {
                     Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                     Console.ReadLine();
                     Console.Clear();
                     GoalPoint();
                 }
-                else if (scoreStuffX <= 100 * Difficulty && scoreStuffY <= 100 * Difficulty)
+                else if (scoreStuffX <= 40 * Difficulty && scoreStuffY <= 40 * Difficulty)
+                {
+                    Console.WriteLine($"YOU'RE ON FIRE!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else if (scoreStuffX <= 80 * Difficulty && scoreStuffY <= 80 * Difficulty)
                 {
                     Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
 
                 }
-                else if (scoreStuffX <= 600 * Difficulty && scoreStuffY <= 600 * Difficulty)
+                else if (scoreStuffX <= 200 * Difficulty && scoreStuffY <= 200 * Difficulty)
                 {
                     Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
+                else if (scoreStuffX <= 400 * Difficulty && scoreStuffY <= 400 * Difficulty)
+                {
+                    Console.WriteLine($"You're cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
                 else if (scoreStuffX <= 800 * Difficulty && scoreStuffY <= 800 * Difficulty)
                 {
-                    Console.WriteLine($"It's Getting Pretty Chilly.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"You're ice cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
-                else if (scoreStuffX <= 1000 * Difficulty && scoreStuffY <= 1000 * Difficulty)
-                {
-                    Console.WriteLine($"You're too cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
-                }
-                else
+                else if (scoreStuffX >= 801 * Difficulty && scoreStuffY >= 801 * Difficulty)
                 {
                     Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }

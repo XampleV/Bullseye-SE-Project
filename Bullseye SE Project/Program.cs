@@ -29,22 +29,26 @@ namespace Bullseye_Project
 
 
             //Set the difficulty
-            Console.WriteLine("Please enter how hard you want the game to be. Hard, Medium, or Easy");
+            Console.WriteLine("Please enter how hard you want the game to be. Extreme, Hard, Medium, or Easy");
             string playerDifficulty = Console.ReadLine().ToLower();
 
             switch (playerDifficulty)
             {
+                case "extreme":
+                    Console.WriteLine("");
+                    functions.mainFunctions.Difficulty = 0.034m;
+                    break;
                 case "hard":
                     Console.WriteLine("Oh, I hope you do well then.");
-                    functions.mainFunctions.Difficulty = 0.5m;
+                    functions.mainFunctions.Difficulty = 1;
                     break;
                 case "medium":
                     Console.WriteLine("Yeah thats where I would play at too.");
-                    functions.mainFunctions.Difficulty = 1;
+                    functions.mainFunctions.Difficulty = 2;
                     break;
                 case "easy":
                     Console.WriteLine("Feeling casual today huh?");
-                    functions.mainFunctions.Difficulty = 2;
+                    functions.mainFunctions.Difficulty = 3.5m;
                     break;
             }
 
