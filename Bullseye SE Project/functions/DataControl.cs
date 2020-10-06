@@ -16,30 +16,38 @@ namespace Bullseye_SE_Project.functions
     {
         public static string currentPath = @"C:\Users\alshoubaki_mohammad\AppData\data.txt";
         public static string json;
+        public static Root users;
         public static string highestUser;
+        public static int highestScore = 0;
+        //public static var users;
 
         public static void InitializeCode()
         {
             LoadCurrentScores();
+            DoesUserAlreadyExist("ok");
+           
         }
-        public static void LoadCurrentScores()
+        
+         public static void LoadCurrentScores()
         {
+
             using (StreamReader r = new StreamReader(currentPath))
             {
                 json = r.ReadToEnd();
                 r.Close();
 
             }
-            var users = JObject.Parse(json);
-            int tempScore = 0;
-            foreach (var i in users["database"])
+            Root users = JsonConvert.DeserializeObject<Root>(json);
+            foreach (var i in users.database)
             {
-                if ((int)i["score"] >= tempScore)
+                if ((int) Convert.ToInt32(i.score) > highestScore)
                 {
-                    tempScore = (int)i["score"];
-                    highestUser = (string)i["username"];
+                    highestScore = ((int)Convert.ToInt32(i.score));
+                    highestUser = i.username;
                 }
+
             }
+
             Console.WriteLine(highestUser);
 
             Console.ReadLine();
@@ -48,17 +56,28 @@ namespace Bullseye_SE_Project.functions
 
 
         }
-        public static bool DoesUserAlreadyExist()
+        public static bool DoesUserAlreadyExist(string playerName)
         {
+            //Root users = JsonConvert.DeserializeObject<Root>(json);
+            foreach (var i in users.database)
+            {
+                if ((string) i.username == playerName)
+                {
+                    Console.WriteLine("It's true.");
+                    Console.ReadLine();
 
+                    return true;
+                }
+            }
 
-            return true;
+            Console.WriteLine("It's false;");
+            Console.ReadLine();
+            return false;
         }
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
         public class Database
         {
-            public string username { get; set; }
-            public string score { get; set; }
+            public  string username { get; set; }
+            public  string score { get; set; }
         }
 
         public class Root
@@ -69,10 +88,5 @@ namespace Bullseye_SE_Project.functions
 
 
 
-    }
-    public class JsonData
-    {
-        public string username { get; set; }
-        public int score { get; set; }
     }
 }
