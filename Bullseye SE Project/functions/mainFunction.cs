@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
+
+
 namespace Bullseye_Project.functions
 {
     class mainFunctions
@@ -19,6 +22,9 @@ namespace Bullseye_Project.functions
         public static string playAgain;
 
         public static decimal Difficulty;
+        // Stopwatch boi
+        public static Stopwatch letsFindThatTime;
+        public static long playersTime;
 
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
@@ -38,6 +44,7 @@ namespace Bullseye_Project.functions
             // start all threads
             //currentGoal.Start();
             howPlayerDoing.Start();
+            letsFindThatTime = Stopwatch.StartNew();
 
 
         }
@@ -77,9 +84,13 @@ namespace Bullseye_Project.functions
 
                 if (scoreStuffX <= 5 * Difficulty && scoreStuffY <= 5 * Difficulty)
                 {
-                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    //This is the players current time
+                    letsFindThatTime.Stop();
+                    playersTime = letsFindThatTime.ElapsedTicks;
+
+                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\nYourTime : {(playersTime / 10000000)} \n------------");
                     Console.ReadLine();
-                    Console.Clear();
+
                     GoalPoint();
                 }
                 else if (scoreStuffX <= 40 * Difficulty && scoreStuffY <= 40 * Difficulty)
