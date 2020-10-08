@@ -25,7 +25,7 @@ namespace Bullseye_Project.functions
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry(string username, string mode)
+        static public void MainFuncionEntry()
         {
             //Make the Goal the First Time
             GoalPoint();
