@@ -25,7 +25,6 @@ namespace Bullseye_SE_Project.functions
         {
             CheckFile();
             LoadCurrentScores();
-            //AddUserIntoDatabase("222");
            
         }
         

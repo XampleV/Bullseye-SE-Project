@@ -20,13 +20,20 @@ namespace Bullseye_Project.functions
 
         public static decimal Difficulty;
 
+        public static int userScore;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry()
+        static public void MainFuncionEntry(string name, string mode)
         {
+            // Get Current details + scores, if none, then it will make a place for the user.
+            Bullseye_SE_Project.functions.DataControl.InitializeCode();
+            userScore = GetCurrentScore(name);
+            Console.WriteLine($"Your highest score so far: {userScore}");
+            Console.ReadLine();
             //Make the Goal the First Time
             GoalPoint();
 
@@ -43,6 +50,21 @@ namespace Bullseye_Project.functions
         }
 
 
+
+        public static int GetCurrentScore(string playerName)
+        {
+            // there is an easier way to do this, we don't have to loop through it but eh.
+            // i don't feel like changing the structure again
+            foreach (var i in Bullseye_SE_Project.functions.DataControl.users.database)
+            {
+                if (i.username == playerName)
+                {
+                    return Convert.ToInt32(i.score);
+                }
+            }
+            Bullseye_SE_Project.functions.DataControl.AddNewUser(playerName);
+            return 0;
+        }
 
         //Find the goal point to hover at
         public static void GoalPoint()

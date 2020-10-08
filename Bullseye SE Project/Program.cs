@@ -22,7 +22,7 @@ namespace Bullseye_Project
             Console.WriteLine("Please enter a username: ");
 
             // Create a string variable and get user input from the keyboard and store it in the variable.
-            userName = Console.ReadLine();
+            userName = Console.ReadLine().ToLower();
 
             // Print the value of the variable (userName) which will display the input value.
             Console.WriteLine("Hello, " + userName);
@@ -54,7 +54,7 @@ namespace Bullseye_Project
             switch (playOrNot)
             {
                 case "yes":
-                    functions.mainFunctions.MainFuncionEntry();
+                    functions.mainFunctions.MainFuncionEntry(userName, playerDifficulty);
                     break;
                 case "no":
                     Console.WriteLine("Too bad.");
