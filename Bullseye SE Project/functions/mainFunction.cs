@@ -44,6 +44,7 @@ namespace Bullseye_Project.functions
             // start all threads
             //currentGoal.Start();
             howPlayerDoing.Start();
+            //This is watch
             letsFindThatTime = Stopwatch.StartNew();
 
 
