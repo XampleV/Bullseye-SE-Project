@@ -6,14 +6,15 @@ namespace Bullseye_Project
     {
         static void Main(string[] args)
         {
-            Bullseye_SE_Project.functions.DataControl.InitializeCode();
-            //Introduction();
+            Introduction();
         }
 
         static void Introduction()
         {
+
             string userName;
-            string Difficulty;
+            string mode;
+            mode = "hard"; // temp
             // Greet them.
             Console.WriteLine("Welcome to Bullseye!");
 
@@ -21,34 +22,52 @@ namespace Bullseye_Project
             Console.WriteLine("Please enter a username: ");
 
             // Create a string variable and get user input from the keyboard and store it in the variable.
-            userName = Console.ReadLine().ToLower();
+            userName = Console.ReadLine();
 
             // Print the value of the variable (userName) which will display the input value.
             Console.WriteLine("Hello, " + userName);
 
-            Console.WriteLine("Would you like to play? (Y/N)");
-            //Console.Write();
-            string Choice = Console.ReadLine().ToLower();
 
-            if (Choice == "yes" || Choice == "y")
-            {
-                while (true)
-                {
-                    Console.WriteLine("What difficulty? Easy, Medium, or Hard?");
-                    Difficulty = Console.ReadLine().ToLower();
-                    if (Difficulty == "hard" || Difficulty == "medium" || Difficulty == "easy")
-                    {
-                        break;
-                    }
-                    Console.WriteLine("Please enter either 'hard', 'medium', or 'easy'");
+            //Set the difficulty
+            Console.WriteLine("Please enter how hard you want the game to be. Hard, Medium, or Easy");
+            string playerDifficulty = Console.ReadLine().ToLower();
 
-                }
-                functions.mainFunctions.MainFuncionEntry(userName, Difficulty);
-            }
-            else if (Choice == "no" || Choice == "no")
+            switch (playerDifficulty)
             {
-                Console.WriteLine("Have a great day then!");
+                case "hard":
+                    Console.WriteLine("Oh, I hope you do well then.");
+                    functions.mainFunctions.Difficulty = 0.5m;
+                    break;
+                case "medium":
+                    Console.WriteLine("Yeah thats where I would play at too.");
+                    functions.mainFunctions.Difficulty = 1;
+                    break;
+                case "easy":
+                    Console.WriteLine("Feeling casual today huh?");
+                    functions.mainFunctions.Difficulty = 2;
+                    break;
             }
+
+            Console.WriteLine("Do you want to play now? Yes or No");
+            string playOrNot = Console.ReadLine().ToLower();
+
+            switch (playOrNot)
+            {
+                case "yes":
+                    functions.mainFunctions.MainFuncionEntry();
+                    break;
+                case "no":
+                    Console.WriteLine("Too bad.");
+                    break;
+                default:
+                    Console.WriteLine("That imput doesn't exist.");
+                    break;
+            }
+
+
+
+
+            //Test for commit
         }
     }
 }
