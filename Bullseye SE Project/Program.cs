@@ -54,7 +54,7 @@ namespace Bullseye_Project
             switch (playOrNot)
             {
                 case "yes":
-                    functions.mainFunctions.MainFuncionEntry(userName, playerDifficulty);
+                    functions.mainFunctions.MainFuncionEntry(userName);
                     break;
                 case "no":
                     Console.WriteLine("Too bad.");

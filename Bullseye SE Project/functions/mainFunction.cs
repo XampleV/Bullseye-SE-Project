@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
+
+
 namespace Bullseye_Project.functions
 {
     class mainFunctions
@@ -22,18 +25,23 @@ namespace Bullseye_Project.functions
 
         public static int userScore;
 
+        // Stopwatch boi
+        public static Stopwatch letsFindThatTime;
+        public static long playersTime;
+
         public static Random _random = new Random(); // This will be our random generator variable.
         // we don't need 2 values for x,y we can grab like this:
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry(string name, string mode)
+        static public void MainFuncionEntry(string name)
         {
-            // Get Current details + scores, if none, then it will make a place for the user.
+            // Get current details / scores. If there are none, then it will make one for the user.
             Bullseye_SE_Project.functions.DataControl.InitializeCode();
             userScore = GetCurrentScore(name);
             Console.WriteLine($"Your highest score so far: {userScore}");
             Console.ReadLine();
+
             //Make the Goal the First Time
             GoalPoint();
 
@@ -45,10 +53,10 @@ namespace Bullseye_Project.functions
             // start all threads
             //currentGoal.Start();
             howPlayerDoing.Start();
+            letsFindThatTime = Stopwatch.StartNew();
 
 
         }
-
 
 
         public static int GetCurrentScore(string playerName)
@@ -65,7 +73,6 @@ namespace Bullseye_Project.functions
             Bullseye_SE_Project.functions.DataControl.AddNewUser(playerName);
             return 0;
         }
-
         //Find the goal point to hover at
         public static void GoalPoint()
         {
@@ -97,31 +104,39 @@ namespace Bullseye_Project.functions
                 }
 
 
-                if (scoreStuffX <= 30 * Difficulty && scoreStuffY <= 30 * Difficulty)
+                if (scoreStuffX <= 5 * Difficulty && scoreStuffY <= 5 * Difficulty)
                 {
-                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    //This is the players current time
+                    letsFindThatTime.Stop();
+                    playersTime = letsFindThatTime.ElapsedTicks;
+
+                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\nYourTime : {(playersTime / 10000000)} \n------------");
                     Console.ReadLine();
-                    Console.Clear();
+
                     GoalPoint();
                 }
-                else if (scoreStuffX <= 100 * Difficulty && scoreStuffY <= 100 * Difficulty)
+                else if (scoreStuffX <= 40 * Difficulty && scoreStuffY <= 40 * Difficulty)
+                {
+                    Console.WriteLine($"YOU'RE ON FIRE!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
+                else if (scoreStuffX <= 80 * Difficulty && scoreStuffY <= 80 * Difficulty)
                 {
                     Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
 
                 }
-                else if (scoreStuffX <= 600 * Difficulty && scoreStuffY <= 600 * Difficulty)
+                else if (scoreStuffX <= 200 * Difficulty && scoreStuffY <= 200 * Difficulty)
                 {
                     Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
+                else if (scoreStuffX <= 400 * Difficulty && scoreStuffY <= 400 * Difficulty)
+                {
+                    Console.WriteLine($"You're cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                }
                 else if (scoreStuffX <= 800 * Difficulty && scoreStuffY <= 800 * Difficulty)
                 {
-                    Console.WriteLine($"It's Getting Pretty Chilly.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"You're ice cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
-                else if (scoreStuffX <= 1000 * Difficulty && scoreStuffY <= 1000 * Difficulty)
-                {
-                    Console.WriteLine($"You're too cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
-                }
-                else
+                else if (scoreStuffX >= 801 * Difficulty && scoreStuffY >= 801 * Difficulty)
                 {
                     Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
                 }
