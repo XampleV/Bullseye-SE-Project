@@ -14,21 +14,37 @@ namespace Bullseye_SE_Project.functions
 {
     class DataControl
     {
-        public static string currentPath = @"C:\Users\alshoubaki_mohammad\AppData\data.txt";
+        public static string currentPath = @"C:\Users\Public\Documents\myData.txt";
         public static string json;
-        public static Root users;
+        public static dynamic users;
         public static string highestUser;
         public static int highestScore = 0;
         //public static var users;
 
         public static void InitializeCode()
         {
+            CheckFile();
             LoadCurrentScores();
-            DoesUserAlreadyExist("ok");
+            //AddUserIntoDatabase("222");
            
         }
         
-         public static void LoadCurrentScores()
+        public static void CheckFile()
+        {
+            if (!File.Exists(currentPath))
+            {
+                string defaultJson = "{'database':[]}";
+                Root desHasToMadeFirst = JsonConvert.DeserializeObject<Root>(defaultJson);
+                string newJsonFileToBeWritten = JsonConvert.SerializeObject(desHasToMadeFirst, Formatting.Indented);
+                using (StreamWriter file = File.CreateText(currentPath))
+                {
+                    file.Write(newJsonFileToBeWritten);
+                    file.Close();
+                    Console.WriteLine("Successfully created a database file.");
+                }
+            }
+        } 
+        public static void LoadCurrentScores()
         {
 
             using (StreamReader r = new StreamReader(currentPath))
@@ -37,7 +53,7 @@ namespace Bullseye_SE_Project.functions
                 r.Close();
 
             }
-            Root users = JsonConvert.DeserializeObject<Root>(json);
+            users = JsonConvert.DeserializeObject<Root>(json);
             foreach (var i in users.database)
             {
                 if ((int) Convert.ToInt32(i.score) > highestScore)
@@ -48,45 +64,45 @@ namespace Bullseye_SE_Project.functions
 
             }
 
-            Console.WriteLine(highestUser);
-
-            Console.ReadLine();
-            //var jsonObj = new JavaScriptSerializer.Deserialize<RootObj>(o1);
-
-
-
         }
-        public static bool DoesUserAlreadyExist(string playerName)
+        public static void AddUserIntoDatabase(string playerName)
         {
-            //Root users = JsonConvert.DeserializeObject<Root>(json);
             foreach (var i in users.database)
             {
                 if ((string) i.username == playerName)
                 {
-                    Console.WriteLine("It's true.");
-                    Console.ReadLine();
-
-                    return true;
+                    return;
                 }
             }
+            AddNewUser(playerName);
 
-            Console.WriteLine("It's false;");
-            Console.ReadLine();
-            return false;
         }
-        public class Database
+        public static void AddNewUser(string playerName)
         {
-            public  string username { get; set; }
-            public  string score { get; set; }
+            string tempJson = "{'username':'"+playerName+"','score':'1'}";
+            Database response = JsonConvert.DeserializeObject<Database>(tempJson);
+            users.database.Add(response);
+
+            string jsonToBeWritten = JsonConvert.SerializeObject(users, Formatting.Indented);
+            using (StreamWriter file = File.CreateText (currentPath))
+            {
+                file.Write(jsonToBeWritten);
+                file.Close();
+            }
+            Console.WriteLine("User Added Successfully.");
         }
-
-        public class Root
-        {
-            public List<Database> database { get; set; }
-        }
-
-
-
 
     }
+    public class Database
+    {
+        public string username { get; set; }
+        public string score { get; set; }
+    }
+
+    public class Root
+    {
+        public List<Database> database { get; set; }
+    }
+
+
 }
