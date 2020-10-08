@@ -90,6 +90,7 @@ namespace Bullseye_Project.functions
                     playersTime = letsFindThatTime.ElapsedTicks;
 
                     Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\nYourTime : {(playersTime / 10000000)} \n------------");
+                    mainFunctions.HowFast();
                     Console.ReadLine();
 
                     GoalPoint();
@@ -127,6 +128,34 @@ namespace Bullseye_Project.functions
 
 
 
+            }
+        }
+
+        public static void HowFast()
+        {
+            if ((playersTime / 10000000) >= 200)
+            {
+                Console.WriteLine("You are as slow as a sloth");
+            }
+            else if ((playersTime / 10000000) >= 100 && (playersTime / 10000000) < 200)
+            {
+                Console.WriteLine("Turtles get there at some point");
+            }
+            else if ((playersTime / 10000000) >= 40 && (playersTime / 10000000) < 100)
+            {
+                Console.WriteLine("Fast as a Green Iguana");
+            }
+            else if ((playersTime / 10000000) >= 20 && (playersTime / 10000000) < 40)
+            {
+                Console.WriteLine("This man is a cheetah");
+            }
+            else if ((playersTime / 10000000) >= 10 && (playersTime / 10000000) < 20)
+            {
+                Console.WriteLine("Man you're as fast as a Peregrine falcon");
+            }
+            else if ((playersTime / 10000000) <= 1 && (playersTime / 10000000) < 10)
+            {
+                Console.WriteLine("You cheated");
             }
         }
     }
