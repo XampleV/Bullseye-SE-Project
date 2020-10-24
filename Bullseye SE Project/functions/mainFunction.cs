@@ -25,6 +25,8 @@ namespace Bullseye_Project.functions
 
         public static int userScore;
 
+        public static string name;
+
         // Stopwatch boi
         public static Stopwatch letsFindThatTime;
         public static long playersTime;
@@ -34,14 +36,14 @@ namespace Bullseye_Project.functions
         // for X: Cursor.Position.X
         // for Y: Cursor.Position.Y
 
-        static public void MainFuncionEntry(string name)
+        static public void MainFuncionEntry(string username)
         {
+            name = username;
             // Get current details / scores. If there are none, then it will make one for the user.
             Bullseye_SE_Project.functions.DataControl.InitializeCode();
             userScore = GetCurrentScore(name);
-            Console.WriteLine($"Your highest score so far: {userScore}");
+            Console.WriteLine($"Your highest score so far: {Convert.ToString(userScore)} seconds.\nClick ENTER to start...");
             Console.ReadLine();
-
             //Make the Goal the First Time
             GoalPoint();
 
@@ -110,35 +112,41 @@ namespace Bullseye_Project.functions
                     letsFindThatTime.Stop();
                     playersTime = letsFindThatTime.ElapsedTicks;
 
-                    Console.WriteLine($"YOU GOT IT\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\nYourTime : {(playersTime / 10000000)} \n------------");
-                    Console.ReadLine();
+                    Bullseye_SE_Project.functions.DataControl.UpdateUserScore(name, Convert.ToInt32(playersTime));
+
+                    Console.WriteLine($"YOU GOT IT\nYour Time : {(playersTime / 10000000)} \n------------\nDo you want to play again?");
+                    string yesorno = Console.ReadLine().ToLower();
+                    if (yesorno == "no")
+                    {
+                        System.Environment.Exit(1);
+                    }
 
                     GoalPoint();
                 }
                 else if (scoreStuffX <= 40 * Difficulty && scoreStuffY <= 40 * Difficulty)
                 {
-                    Console.WriteLine($"YOU'RE ON FIRE!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"YOU'RE ON FIRE!");
                 }
                 else if (scoreStuffX <= 80 * Difficulty && scoreStuffY <= 80 * Difficulty)
                 {
-                    Console.WriteLine($"HOT!\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"HOT!");
 
                 }
                 else if (scoreStuffX <= 200 * Difficulty && scoreStuffY <= 200 * Difficulty)
                 {
-                    Console.WriteLine($"Warmer\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"Warmer");
                 }
                 else if (scoreStuffX <= 400 * Difficulty && scoreStuffY <= 400 * Difficulty)
                 {
-                    Console.WriteLine($"You're cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"You're cold.");
                 }
                 else if (scoreStuffX <= 800 * Difficulty && scoreStuffY <= 800 * Difficulty)
                 {
-                    Console.WriteLine($"You're ice cold.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"You're ice cold.");
                 }
                 else if (scoreStuffX >= 801 * Difficulty && scoreStuffY >= 801 * Difficulty)
                 {
-                    Console.WriteLine($"You're frozen.\ngoal:  x{goalXPos} y{goalYPos}\ncurrent: {heyX},{heyY}\nFar away values: {scoreStuffX},{scoreStuffY}\n------------");
+                    Console.WriteLine($"You're frozen.");
                 }
 
 
